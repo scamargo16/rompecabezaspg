@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rompecabezas Cliente/Servidor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Pantalla de Inicio -->
+        <div id="start-screen" class="game-screen">
+            <h1>🖥️ Rompecabezas Cliente/Servidor</h1>
+            
+            <div class="form-group">
+                <label for="image-upload">Selecciona tu imagen:</label>
+                <input type="file" id="image-upload" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label for="puzzle-size">Tamaño del rompecabezas:</label>
+                <select id="puzzle-size">
+                    <option value="3">3x3 (Fácil)</option>
+                    <option value="4">4x4 (Medio)</option>
+                    <option value="5">5x5 (Difícil)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="difficulty">Dificultad de preguntas:</label>
+                <select id="difficulty">
+                    <option value="facil">Básico</option>
+                    <option value="medio">Intermedio</option>
+                    <option value="dificil">Avanzado</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="questions-count">Número de preguntas:</label>
+                <input type="number" id="questions-count" min="5" max="20" value="10">
+            </div>
+
+            <button class="btn" onclick="startGame()">🎮 Comenzar Juego</button>
+        </div>
+
+        <!-- Pantalla de Juego -->
+        <div id="game-screen" class="game-screen hidden">
+            <div class="score-display">
+                <span>Puntos: </span><span id="score">0</span>
+                <span style="margin-left: 20px;">Pregunta: </span><span id="question-counter">1</span>/<span id="total-questions">10</span>
+            </div>
+
+            <div class="game-layout">
+                <div class="left-panel">
+                    <div class="timer-container">
+                        <div class="clock-face" id="clock-face">
+                            <div class="clock-markers">
+                                <div class="clock-marker" style="transform: rotate(0deg) translateY(-50px);"></div>
+                                <div class="clock-marker" style="transform: rotate(90deg) translateY(-50px);"></div>
+                                <div class="clock-marker" style="transform: rotate(180deg) translateY(-50px);"></div>
+                                <div class="clock-marker" style="transform: rotate(270deg) translateY(-50px);"></div>
+                            </div>
+                            <div class="clock-hand" id="clock-hand"></div>
+                            <div class="timer-text" id="timer">30</div>
+                        </div>
+                    </div>
+
+                    <div id="question-container" class="question-container">
+                        <h2 id="question-text">Cargando pregunta...</h2>
+                        <div id="options" class="options"></div>
+                    </div>
+
+                    <div id="feedback" class="feedback hidden"></div>
+                </div>
+
+                <div class="right-panel">
+                    <div id="piece-inventory" class="piece-inventory">
+                        <p>Piezas obtenidas aparecerán aquí</p>
+                    </div>
+
+                    <div id="puzzle-area" class="puzzle-area"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla Final -->
+        <div id="end-screen" class="game-screen hidden">
+            <h1>🎉 ¡Juego Completado!</h1>
+            <div id="final-score" class="final-score">
+                <h2>Tu puntuación final: <span id="final-points">0</span> puntos</h2>
+                <h3 id="score-rating">Calificación</h3>
+            </div>
+            
+            <!-- El rompecabezas completado se insertará aquí dinámicamente -->
+            
+            <button class="btn" onclick="restartGame()">🔄 Intentar de Nuevo</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        Desarrollado por Carmago Durán
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
